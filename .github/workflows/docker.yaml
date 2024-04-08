@@ -34,11 +34,6 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-      - name: match-tag-to-package-version
-        uses: geritol/match-tag-to-package-version@0.2.0
-        with:
-          TAG_PREFIX: ""
-        if: ${{ github.event_name == 'push' && contains(github.ref, 'refs/tags/') }}
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
